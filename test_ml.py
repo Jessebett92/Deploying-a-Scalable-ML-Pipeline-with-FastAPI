@@ -1,28 +1,71 @@
 import pytest
-# TODO: add necessary import
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+from ml.model import train_model, inference, compute_model_metrics
 
-# TODO: implement the first test. Change the function name and input as needed
-def test_one():
+# add necessary import
+
+# implement the first test. Change the function name and input as needed
+def test_train_model():
     """
-    # add description for the first test
+    # train_model test
+
+    Testing that train_model function will return
+    a trained RandomForestClassifier model
+    when given training data. 
     """
-    # Your code here
-    pass
+
+    # Create dummy training data
+    X_train = np.array([[1, 2], [3, 4], [5, 6]])
+    y_train = np.array([0, 1, 0])
+    model = train_model(X_train, y_train)
+    
+    # Check that the model is a RandomForestClassifier instance
+    assert isinstance(model, RandomForestClassifier)
 
 
-# TODO: implement the second test. Change the function name and input as needed
-def test_two():
+# implement the second test. Change the function name and input as needed
+def test_inference():
     """
-    # add description for the second test
+    # Inference test
+
+    I'm testing that the inference function returns 
+    reasonable predictions based on the values below. 
     """
-    # Your code here
-    pass
+    
+    # Create dummy training data and train model
+    X_train = np.array([[1, 2], [3, 4], [5, 6]])
+    y_train = np.array([0, 1, 0])
+    model = train_model(X_train, y_train)
+    
+    # Create dummy test data
+    X_test = np.array([[2, 3], [4, 5]])
+    
+    preds = inference(model, X_test)
+    
+    # Check that predictions length matches input samples
+    assert len(preds) == X_test.shape[0]
+    
+    # Check that predictions have class labels (integers).
+    assert all(isinstance(p, (int, np.integer)) for p in preds)
 
 
 # TODO: implement the third test. Change the function name and input as needed
-def test_three():
+def test_model_metrics():
     """
-    # add description for the third test
+    Model Metrics Test
+
+    I'm testing that the compute_model_metrics function returns 
+    precision, recall, and fbeta scores between the valid range
+     of 0 and 1. 
     """
-    # Your code here
-    pass
+    
+    y_true = np.array([0, 1, 1, 0, 1])
+    y_pred = np.array([0, 1, 0, 0, 1])
+    
+    precision, recall, fbeta = compute_model_metrics(y_true, y_pred)
+    
+    # Check that all metrics are floats between 0 and 1
+    for metric in (precision, recall, fbeta):
+        assert isinstance(metric, float)
+        assert 0.0 <= metric <= 1.0
