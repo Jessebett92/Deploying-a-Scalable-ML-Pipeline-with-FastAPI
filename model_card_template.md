@@ -41,9 +41,9 @@ The model is evaluated on a test set made from the census.csv Income dataset. Th
 ## Metrics
 The model was evaluated using precision, recall, and F1 score, standard metrics for classification tasks that provide insight into the balance between false positives and false negatives.
 
-Precision: 0.7317 | Recall: 0.6114 | F1: 0.6662
+Precision: 1.0000 | Recall: 0.6667 | F1: 0.8000
 
-The precision score indicates that nearly 73% of the model's positive predictions were correct. The recall shows that the model identifies nearly 61% of all actual positive cases. 
+The precision score indicates that 100% of the model's positive predictions were correct. The recall shows that the model identifies nearly 67% of all actual positive cases. 
 
 The F1 score balances these two metrics and provides an overall measure of predictive accuracy. These results suggest the model performs reasonably well but could benefit from further tuning. 
 

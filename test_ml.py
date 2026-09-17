@@ -64,6 +64,10 @@ def test_model_metrics():
     y_pred = np.array([0, 1, 0, 0, 1])
     
     precision, recall, fbeta = compute_model_metrics(y_true, y_pred)
+
+    print(f"precision: {precision: .4f}, Recall: {recall: .4f}, F1: {fbeta: .4f}")
+
+    assert (precision, recall, fbeta) == pytest.approx((1.0, 2/3, 0.8))
     
     # Check that all metrics are floats between 0 and 1
     for metric in (precision, recall, fbeta):
